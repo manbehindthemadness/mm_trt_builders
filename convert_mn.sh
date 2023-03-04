@@ -8,7 +8,7 @@ height=$4
 precision=$5
 workspace=$6
 # trt_version="$(echo $( tr -d '.-' <<< $(echo $(echo $(echo $(dpkg -l | grep nvinfer-plugin-dev) | cut -d ' ' -f 3)) | cut -d '+' -f 1)))"
-trt_version=$(test)
+trt_version='test'
 
 if [ -z "${downsample}"    ]; then echo "Error: ARG DOWNSAMPLE    not specified."; exit 1; fi \
     && if [ -z "${rez}"   ]; then echo "Error: ARG REZ   not specified."; exit 1; fi \
