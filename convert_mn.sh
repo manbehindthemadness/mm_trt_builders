@@ -17,7 +17,8 @@ if [ -z "${downsample}"    ]; then echo "Error: ARG DOWNSAMPLE    not specified.
     && if [ -z "${precision}" ]; then echo "Error: ARG PRECISION not specified."; exit 1; fi \
     && if [ -z "${workspace}" ]; then echo "Error: ARG WORKSPACE not specified."; exit 1; fi
 
-target=mnv3-trt$trt_version-fp$precision-$rez-ds$downsample.engine
+target="mnv3-trt$trt_version-fp$precision-$rez-ds$downsample.engine"
+
 echo target: "$target"
 echo tensorrt version: "$trt_version"
 echo downsample: "$downsample"
