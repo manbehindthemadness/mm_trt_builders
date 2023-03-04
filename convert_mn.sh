@@ -6,6 +6,14 @@ rez=$2
 width=$3
 height=$4
 precision=$5
+workspace=$6
+
+if [ -z "${downsample}"    ]; then echo "Error: ARG DOWNSAMPLE    not specified."; exit 1; fi \
+    && if [ -z "${rez}"   ]; then echo "Error: ARG REZ   not specified."; exit 1; fi \
+    && if [ -z "${height}"  ]; then echo "Error: ARG HEIGHT  not specified."; exit 1; fi \
+    && if [ -z "${width}" ]; then echo "Error: ARG WIDTH not specified."; exit 1; fi \
+    && if [ -z "${precision}" ]; then echo "Error: ARG PRECISION not specified."; exit 1; fi \
+    && if [ -z "${workspace}" ]; then echo "Error: ARG WORKSPACE not specified."; exit 1; fi
 
 target="mnv3-trt8517-fp$precision-$rez-ds$downsample.engine"
 
@@ -29,4 +37,4 @@ trt_shapes=$(python translate_inputs.py --onnx-shapes "$shapes" --size $width $h
 
 echo $trt_shapes
 
-trtexec --onnx=rvm_mobilenetv3_fp${precision}_sim_modified_fp${precision}.onnx --streams=2 --exposeDMA --workspace=$6 --saveEngine=$target --verbose # --useDLACore=0 --allowGPUFallback # --optShapes=$trt_shapes
+trtexec --onnx=rvm_mobilenetv3_fp${precision}_sim_modified_fp${precision}.onnx --streams=2 --exposeDMA --workspace=$workspace --saveEngine=$target --verbose # --useDLACore=0 --allowGPUFallback # --optShapes=$trt_shapes
