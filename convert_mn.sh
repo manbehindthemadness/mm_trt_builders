@@ -22,7 +22,7 @@ echo width: ${width}
 echo height: ${height}
 echo precision: ${precision}
 echo workspace: ${workspace}
-target="mnv3-trt${trt_version}-fp${precision}-${rez}-ds${downsample}.engine"
+target=mnv3-trt${trt_version}-fp${precision}-${rez}-ds${downsample}.engine
 
 echo
 echo building engine: ${target}
