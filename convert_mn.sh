@@ -7,7 +7,7 @@ width=$3
 height=$4
 precision=$5
 workspace=$6
-trt_version="$(tr -d '.-' <<< $(echo $(echo $(echo $(dpkg -l | grep nvinfer-plugin-dev) | cut -d " " -f 3)) | cut -d "+" -f 1))"
+trt_version=$(tr -d '.-' <<< $(echo $(echo $(echo $(dpkg -l | grep nvinfer-plugin-dev) | cut -d ' ' -f 3)) | cut -d '+' -f 1))
 
 if [ -z "${downsample}"    ]; then echo "Error: ARG DOWNSAMPLE    not specified."; exit 1; fi \
     && if [ -z "${rez}"   ]; then echo "Error: ARG REZ   not specified."; exit 1; fi \
@@ -15,7 +15,7 @@ if [ -z "${downsample}"    ]; then echo "Error: ARG DOWNSAMPLE    not specified.
     && if [ -z "${width}" ]; then echo "Error: ARG WIDTH not specified."; exit 1; fi \
     && if [ -z "${precision}" ]; then echo "Error: ARG PRECISION not specified."; exit 1; fi \
     && if [ -z "${workspace}" ]; then echo "Error: ARG WORKSPACE not specified."; exit 1; fi
-target=$(cmd mnv3-trt"${trt_version}"-fp"${precision}"-"${rez}"-ds"${downsample}".engine)
+target=$(echo mnv3-trt"${trt_version}"-fp"${precision}"-"${rez}"-ds"${downsample}".engine)
 
 echo tensorrt version: "${trt_version}"
 echo downsample: "${downsample}"
