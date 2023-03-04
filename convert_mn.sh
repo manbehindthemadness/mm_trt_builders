@@ -16,6 +16,12 @@ if [ -z "${downsample}"    ]; then echo "Error: ARG DOWNSAMPLE    not specified.
     && if [ -z "${precision}" ]; then echo "Error: ARG PRECISION not specified."; exit 1; fi \
     && if [ -z "${workspace}" ]; then echo "Error: ARG WORKSPACE not specified."; exit 1; fi
 
+echo downsample: ${downsample}
+echo rezolution: ${rez}
+echo width: ${width}
+echo height: ${height}
+echo precision: ${precision}
+echo workspace: ${workspace}
 target="mnv3-trt${trt_version}-fp${precision}-${rez}-ds${downsample}.engine"
 
 echo
