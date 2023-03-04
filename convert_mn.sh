@@ -7,7 +7,7 @@ width=$3
 height=$4
 precision=$5
 workspace=$6
-trt_version="$(tr -d '.-' <<< "$(echo "$(echo "$(echo "$(dpkg -l | grep nvinfer-plugin-dev)" | cut -d " " -f 3)")" | cut -d "+" -f 1)")"
+trt_version="$(tr -d '.-' <<< $(echo $(echo $(echo $(dpkg -l | grep nvinfer-plugin-dev) | cut -d " " -f 3)) | cut -d "+" -f 1))"
 
 if [ -z "${downsample}"    ]; then echo "Error: ARG DOWNSAMPLE    not specified."; exit 1; fi \
     && if [ -z "${rez}"   ]; then echo "Error: ARG REZ   not specified."; exit 1; fi \
@@ -22,10 +22,10 @@ echo width: "${width}"
 echo height: "${height}"
 echo precision: "${precision}"
 echo workspace: "${workspace}"
-target=mnv3-trt"${trt_version}"-fp"${precision}"-"${rez}"-ds"${downsample}".engine
+target=$(echo mnv3-trt"${trt_version}"-fp"${precision}"-"${rez}"-ds"${downsample}".engine)
 
 echo
-echo building engine: ${target}
+echo building engine: "${target}"
 echo
 sleep 5
 wget https://github.com/PeterL1n/RobustVideoMatting/releases/download/v1.0.0/rvm_mobilenetv3_fp${precision}.onnx
