@@ -15,10 +15,10 @@ if [ -z "${downsample}"    ]; then echo "Error: ARG DOWNSAMPLE    not specified.
     && if [ -z "${width}" ]; then echo "Error: ARG WIDTH not specified."; exit 1; fi \
     && if [ -z "${precision}" ]; then echo "Error: ARG PRECISION not specified."; exit 1; fi \
     && if [ -z "${workspace}" ]; then echo "Error: ARG WORKSPACE not specified."; exit 1; fi
-target=$(echo mnv3-trt"${trt_version}"-fp"${precision}"-"${rez}"-ds"${downsample}".engine)
+target="$(cmd mnv3-trt"${trt_version}"-fp"${precision}"-"${rez}"-ds"${downsample}".engine)"
 
 echo downsample: "${downsample}"
-echo rezolution: "${rez}"
+echo resolution: "${rez}"
 echo width: "${width}"
 echo height: "${height}"
 echo precision: "${precision}"
