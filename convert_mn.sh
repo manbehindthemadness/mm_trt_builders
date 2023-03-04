@@ -1,12 +1,12 @@
 #!/bin/bash
 
 rm -f ./*.onnx*
-downsample=$1
-rez=$2
-width=$3
-height=$4
-precision=$5
-workspace=$6
+downsample=$(echo "${1}" | tr -d '\r')
+rez=$(echo "${2}" | tr -d '\r')
+width=$(echo "${3}" | tr -d '\r')
+height=$(echo "${4}" | tr -d '\r')
+precision=$(echo "${5}" | tr -d '\r')
+workspace=$(echo "${6}" | tr -d '\r')
 trt_version="$( tr -d '.-' <<< $(echo $(echo $(echo $(dpkg -l | grep nvinfer-plugin-dev) | cut -d ' ' -f 3)) | cut -d '+' -f 1))"
 target="mnv3-trt$trt_version-fp$precision-${rez}-ds$downsample.engine"
 
